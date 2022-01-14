@@ -1,0 +1,32 @@
+{
+    "domain" : "http://some-domain.com",
+    "databaseOn" : "false",
+    "database" : {
+        "host" : "some_host",
+        "db"   : "some_db",
+        "user" : "some_db_user",
+        "pass" : "some_password"
+    },
+    "css" : [
+        "<link rel='stylesheet' href='https://unpkg.com/purecss@2.0.6/build/pure-min.css' integrity='sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5' crossorigin='anonymous'>",
+        "<link rel='stylesheet' href='style.css' />",
+        "<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>"
+    ],
+    "scripts" : [
+        "<script src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous'></script>",
+        "<script src='https://kit.fontawesome.com/2ed00b3ff5.js' crossorigin='anonymous'></script>",
+        "<script crossorigin src='https://unpkg.com/react@17/umd/react.production.min.js'></script>",
+        "<script crossorigin src='https://unpkg.com/react-dom@17/umd/react-dom.production.min.js'></script>",
+        "<script src='https://cdnjs.cloudflare.com/ajax/libs/react-router/6.2.1/react-router.production.min.js'></script>",
+        "<script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>"
+    ],
+    "reactComponents" : [
+        "<script src='/components/CinkoMvcApp.js' type='text/babel'></script>"
+    ],
+    "indexText" : {
+        "head" : "CinkoMVC",
+        "subhead" : "A light weight PHP MVC Framework with React via CDN setup on the front end. Created with simplicity in mind, it's a quick way to get started with MVC frameworks and/or React.",
+        "getStartedLink" : "http://purecss.io",
+        "getStartedText" : "Get Started"
+    }
+}
