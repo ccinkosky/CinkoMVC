@@ -45,7 +45,7 @@ The front end is currently setup as a single page React app. It utilizes the fol
  * Pure CSS
  * Google Fonts
 
-You can edit what CSS, JavaScript and React components are included by modifying the corresponding sections in the config.json file. The example below shows what is currently in the config.json file. For the React components, just make sure that your call to ReactDOM.render() is in the last component in the list.
+You can edit what CSS, JavaScript and React components are included by modifying the corresponding sections in the **config.json** file. The example below shows what is currently in the **config.json** file. For the React components, just make sure that your call to **ReactDOM.render()** is in the last component in the list.
 
 ``` json
 "css" : [
@@ -104,7 +104,7 @@ You can edit what CSS, JavaScript and React components are included by modifying
 
     * your-domain.com/api/examples = ExamplesController->indexAction()
 
- 6. In **Routes.php** the the route "/" is matched so it calls (new AbstractController)->view("index"); This loads **views/index.php**, which is the view for the one page React app. $this (the instance for the controller) is also available to the view.
+ 6. In **Routes.php** the the route "/" is matched so it calls **(new AbstractController)->view("index");** This loads **views/index.php**, which is the view for the one page React app. **$this** (the instance for the controller) is also available to the view.
 
  7. **views/index.php** loads the CSS, JavaScript and React components.
     
@@ -273,7 +273,7 @@ When a model that extends **AbstractModel** is created it takes the class name, 
  * class **AppUserMetaDataModel** extends AbstractModel : **$this->table** will be **app_user_meta_data**
  * You can always set **$this->table** to any table you want as well.
 
-When you use the select(), insert(), update() and delete() functions in the model, they will be executed against the table stored in **$this->table**. Below is models/**AppUsersModel.php**. It has examples of how to use these functions to execute queries against your database.
+When you use the **select()**, **insert()**, **update()** and **delete()** functions in the model, they will be executed against the table stored in **$this->table**. Below is models/**AppUsersModel.php**. It has examples of how to use these functions to execute queries against your database.
 ```php
 <?php
 /**
@@ -472,7 +472,7 @@ $this->sendTemplateEmail(
 </html>
 ```
 
-## Set and Get Cookies
+## Handling Cookies
 Objects that extend **AppObject**, **AbstractController** or **AbstractModel** have a few functions for handling cookies. **setCookie()**, **getCookie()** and **deleteCookie()**. Below are some examples of how to use them.
 ```php
 // Save a string as a cookie
@@ -495,7 +495,7 @@ $this->deleteCookie("user_info");
 ## To Do
  * Add a few more comments to the React Components
  * Update the splash page component to include a button that links to the github repo
- * Update the splash page component to include links for to clone or download
+ * Update the splash page component to include links to clone or download
  * Add logo
  * Add loading screen
 
