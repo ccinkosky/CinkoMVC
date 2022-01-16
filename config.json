@@ -1,5 +1,5 @@
 {
-    "domain" : "http://some-domain.com",
+    "domain" : "http://your-domain.com",
     "databaseOn" : false,
     "database" : {
         "type" : "some_db_type",
