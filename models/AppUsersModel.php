@@ -11,33 +11,8 @@
  * ...however you can change the table anytime like so:
  * 
  * $this->table = "some_other_table";
- * 
- * You can see all these functions in action in the example
- * controller UserController.php
  */
 class AppUsersModel extends AbstractModel {
-
-    /**
-     * This function is an example of how you can use the normal
-     * PDO functionality (https://phpdelusions.net/pdo). 
-     * Sometimes this is needed to do more complicated queries.
-     * 
-     * @param int $id
-     * 
-     * @return array
-     */
-    public function pdoExample (int $id) : array {
-        $sql = "SELECT 
-                au.email, 
-                aumd.value as color_preference
-                FROM app_users au, app_users_meta_data aumd
-                WHERE au.id = aumd.user_id
-                AND aumd.name = 'color_preference'
-                AND au.id = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$id]); 
-        return $stmt->fetchAll();
-    }
     
     /**
      * This is an example function to insert a new
@@ -105,6 +80,28 @@ class AppUsersModel extends AbstractModel {
         $this->delete([
             $where = [["id","=",$id]]
         ]);
+    }
+
+    /**
+     * This function is an example of how you can use the normal
+     * PDO functionality (https://phpdelusions.net/pdo). 
+     * Sometimes this is needed to do more complicated queries.
+     * 
+     * @param int $id
+     * 
+     * @return array
+     */
+    public function pdoExample (int $id) : array {
+        $sql = "SELECT 
+                au.email, 
+                aumd.value as color_preference
+                FROM app_users au, app_users_meta_data aumd
+                WHERE au.id = aumd.user_id
+                AND aumd.name = 'color_preference'
+                AND au.id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]); 
+        return $stmt->fetchAll();
     }
 
 }

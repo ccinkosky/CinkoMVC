@@ -16,7 +16,7 @@ class AbstractController extends AppObject {
      */
     function __construct () {
         parent::__construct();
-        $this->post = json_decode(@file_get_contents('php://input'),true);
+        $this->postBody = json_decode(@file_get_contents('php://input'),true);
         return $this;
     }
 
@@ -25,8 +25,35 @@ class AbstractController extends AppObject {
      * 
      * @return bool
      */
-    public function isPost () : bool {
+    public function isGET () : bool {
+        return ($_SERVER['REQUEST_METHOD'] === 'GET');
+    }
+
+    /**
+     * Simple function to check if the request method is POST
+     * 
+     * @return bool
+     */
+    public function isPOST () : bool {
         return ($_SERVER['REQUEST_METHOD'] === 'POST');
+    }
+
+    /**
+     * Simple function to check if the request method is PUT
+     * 
+     * @return bool
+     */
+    public function isPUT () : bool {
+        return ($_SERVER['REQUEST_METHOD'] === 'PUT');
+    }
+
+    /**
+     * Simple function to check if the request method is DELETE
+     * 
+     * @return bool
+     */
+    public function isDELETE () : bool {
+        return ($_SERVER['REQUEST_METHOD'] === 'DELETE');
     }
 
     /**

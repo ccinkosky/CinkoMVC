@@ -33,8 +33,10 @@ class AppObject {
      * @return PDO|false
      */
     private function dbConnect () {
-        if ($this->config->databaseOn == "true") {
-            $dsn = "mysql:host=".$this->config->database->host.";dbname=".$this->config->database->db;
+        if ($this->config->databaseOn) {
+            $dsn = $this->config->database->type;
+            $dsn .= ":host=".$this->config->database->host;
+            $dsn .= ";dbname=".$this->config->database->db;
             $db = new PDO($dsn, $this->config->database->user, $this->config->database->pass);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
@@ -136,16 +138,17 @@ class AppObject {
      * @param string $email
      * @param string $subject
      * @param string $template
+     * @param string $from
      * @param array $data
      * 
      * @return void
      */
-    public function sendTemplateEmail (string $email, string $subject, string $template, array $data) {
+    public function sendTemplateEmail (string $email, string $from, string $subject, string $template, array $data) {
         $body = file_get_contents("../views/emails/".$template.".html");
         foreach ($data as $key => $value) {
             $body = str_replace("%%".$key."%%",$value,$body);
         }
-        $this->sendEmail($email,$subject,$body);
+        $this->sendEmail($email,$subject,$body,$from);
     }
     
     /**

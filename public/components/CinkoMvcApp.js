@@ -1,59 +1,32 @@
-class CinkoMvcApp extends React.Component {
+const Link = ReactRouterDOM.Link;
+const Route = ReactRouterDOM.Route;
+const useHistory = ReactRouterDOM.useHistory;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            head : "",
-            subhead : "",
-            getStartedLink : "",
-            getStartedText : ""
-        };
+function CinkoMvcApp () {
+
+    const history = useHistory();
+
+    function navigate (loc) {
+        $(".component-container").fadeOut(300,function(){
+            history.push(loc);
+        });
     }
 
-    componentDidMount () {
-        this.updateThisData();
-    }
-
-    async updateThisData () {
-        try {
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ get : 'indexText' })
-            };
-            const res = await fetch("/api/index/text", requestOptions);
-            const data = await res.json();
-            this.setState({
-                head : data.head,
-                subhead : data.subhead,
-                getStartedLink : data.getStartedLink,
-                getStartedText : data.getStartedText
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    render () {
-        return (
-            <div className="splash-container">
-                <div className="splash">
-                    <h1 className="splash-head">{this.state.head}</h1>
-                    <p className="splash-subhead">
-                        {this.state.subhead}
-                    </p>
-                    <p>
-                        <a href={this.state.getStartedLink} className="pure-button pure-button-primary">
-                            {this.state.getStartedText} <i className="fas fa-sign-out-alt" aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </div>
-            </div>
-        )
-    }
+    return (
+        <>
+            <Route exact path="/">
+                <SplashPage navigate={navigate} />
+            </Route>
+            <Route path="/README.md">
+                <ReadMe navigate={navigate} />
+            </Route>
+        </>
+    )
 }
 
-ReactDOM.render(
-    <CinkoMvcApp />, 
-    document.getElementById('app')
+ReactDOM.render((
+    <ReactRouterDOM.HashRouter>
+        <CinkoMvcApp />
+    </ReactRouterDOM.HashRouter>
+    ), document.getElementById('app')
 );
