@@ -1,5 +1,5 @@
 # CinkoMVC
-## Author: Corey Cinkosky &bull; Version 1.0 &bull; 203KB &bull; [Demo](https://mvc.redzoneassault.com/)
+## Author: Corey Cinkosky &bull; Version 1.0 &bull; 249KB &bull; [Demo](https://mvc.redzoneassault.com/)
 A light weight PHP MVC framework with React via CDN setup on the front end. Created with simplicity in mind, it's a easy tool to get associated with MVC frameworks and/or React while still being able to work with a good old LAMP stack. The front end is currently setup as a single page React app while the back end acts as an API that serves up JSON for the front end to consume.
 
 ## Setup
@@ -296,7 +296,7 @@ class AppUsersModel extends AbstractModel {
      * record into the app_users table. Something like this
      * could be used when a new user registers
      * 
-     * This creates a query like this:
+     * This creates a query like:
      * 
      * INSERT INTO app_users (email, password, registration_date)
      * VALUES ('some_email@some-domain.com', 'some_password', 1234567890);
@@ -320,7 +320,7 @@ class AppUsersModel extends AbstractModel {
      * This is an example function to select records by email
      * that registered after a certain date
      * 
-     * This creates a query like this:
+     * This creates a query like:
      * 
      * SELECT id, email ,registration_date
      * FROM app_users
@@ -347,10 +347,10 @@ class AppUsersModel extends AbstractModel {
      * This particular example could be used when a user
      * updates their password
      * 
-     * This creates a query like this:
+     * This creates a query like:
      * 
      * UPDATE app_users SET
-     * password = 'some_password',
+     * password = 'some_password'
      * WHERE id = 12345;
      * 
      * @param int $id
@@ -368,7 +368,7 @@ class AppUsersModel extends AbstractModel {
     /**
      * This is an example function showing how to delete a record
      * 
-     * This creates a query like this:
+     * This creates a query like:
      * 
      * DELETE FROM app_users WHERE id = 12345;
      * 

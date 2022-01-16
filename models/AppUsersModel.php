@@ -19,10 +19,16 @@ class AppUsersModel extends AbstractModel {
      * record into the app_users table. Something like this
      * could be used when a new user registers
      * 
+     * This creates a query like:
+     * 
+     * INSERT INTO app_users (email, password, registration_date)
+     * VALUES ('some_email@some-domain.com', 'some_password', 1234567890);
+     * 
+     * ...and returns the last_insert_id()
+     * 
      * @param string $email
      * @param string $pass
      * 
-     * The insert method returns the last_insert_id()
      * @return int
      */
     public function createUser (string $email, string $pass) : int {
@@ -36,6 +42,13 @@ class AppUsersModel extends AbstractModel {
     /**
      * This is an example function to select records by email
      * that registered after a certain date
+     * 
+     * This creates a query like:
+     * 
+     * SELECT id, email ,registration_date
+     * FROM app_users
+     * WHERE email = '$email'
+     * AND registration_date >= $date;
      * 
      * @param string $email
      * @param int $date
@@ -57,6 +70,12 @@ class AppUsersModel extends AbstractModel {
      * This particular example could be used when a user
      * updates their password
      * 
+     * This creates a query like:
+     * 
+     * UPDATE app_users SET
+     * password = 'some_password'
+     * WHERE id = 12345;
+     * 
      * @param int $id
      * @param string $pass
      * 
@@ -71,6 +90,10 @@ class AppUsersModel extends AbstractModel {
 
     /**
      * This is an example function showing how to delete a record
+     * 
+     * This creates a query like:
+     * 
+     * DELETE FROM app_users WHERE id = 12345;
      * 
      * @param int $id
      * 
