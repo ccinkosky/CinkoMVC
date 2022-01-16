@@ -55,7 +55,6 @@ The front end is currently setup as a single page React app. It utilizes the fol
 You can edit what CSS, JavaScript and React components are included by modifying the corresponding sections in the config.json file. The example below shows what is currently in the config.json file. For the React components, just make sure that your call to ReactDOM.render() is in the last component in the list.
 
 ``` json
-...
 "css" : [
     "<link rel='stylesheet' href='https://unpkg.com/purecss@2.0.6/build/pure-min.css' crossorigin>",
     "<link rel='stylesheet' href='/assets/css/github-markdown-dark.css'>",
@@ -75,7 +74,6 @@ You can edit what CSS, JavaScript and React components are included by modifying
     "<script src='/components/ReadMe.js' type='text/babel'></script>",
     "<script src='/components/CinkoMvcApp.js' type='text/babel'></script>"
 ]
-...
 ```
 
 ## Code Flow
