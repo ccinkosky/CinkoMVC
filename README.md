@@ -2,13 +2,6 @@
 ## Author: Corey Cinkosky &bull; Version 1.0 &bull; 203KB &bull; [Demo](https://mvc.redzoneassault.com/)
 A light weight PHP MVC framework with React via CDN setup on the front end. Created with simplicity in mind, it's a easy tool to get associated with MVC frameworks and/or React while still being able to work with a good old LAMP stack. The front end is currently setup as a single page React app while the back end acts as an API that serves up JSON for the front end to consume.
 
-## To Do
- * Add a few more comments to the React Components
- * Update the splash page component to include a button that links to the github repo
- * Update the splash page component to include links for to clone or download
- * Add logo
- * Add loading screen
-
 ## Setup
 The app should work right out of the box. Just load it up on your server and point your domain to the **public** folder. Make sure that **public/index.php** has access to the parent directory. If you run into trouble with access to the parent directory in a LAMP environment, you can modify your apache 2 configuration file and set it so that the base directory is the parent directory while the document root is pointed to the **public** folder. In the example below a **public_html** folder (the parent folder) is the base directory the applciation sits in, while the **public** folder is the document root.
 
@@ -499,6 +492,12 @@ $user_info = $this->getCookie("user_info");
 // Delete a cookie
 $this->deleteCookie("user_info");
 ```
+## To Do
+ * Add a few more comments to the React Components
+ * Update the splash page component to include a button that links to the github repo
+ * Update the splash page component to include links for to clone or download
+ * Add logo
+ * Add loading screen
 
 ## Additional Resources
  * [React Guide](https://reactjs.org/docs/hello-world.html)
