@@ -9,9 +9,6 @@ class ReadMe extends React.Component {
 
     componentDidMount () {
         this.updateReadMe();
-        setInterval(function () {
-            this.updateReadMe();
-        }.bind(this),10000);
     }
 
     async updateReadMe () {
@@ -28,6 +25,7 @@ class ReadMe extends React.Component {
             if (!this.mounted) {
                 $(".component-container").fadeIn(1000,function () {
                     this.mounted = true;
+                    hljs.highlightAll();
                 });
             }
         } catch (e) {

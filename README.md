@@ -41,6 +41,7 @@ The front end is currently setup as a single page React app. It utilizes the fol
  * jQuery
  * Font Awesome
  * Markdown-it
+ * highlightjs
  * github-markdown-dark
  * Pure CSS
  * Google Fonts
@@ -112,7 +113,7 @@ You can edit what CSS, JavaScript and React components are included by modifying
 
         * **public/components/SplashPage.js** : This component loads the splash page. When the component is mounted, it makes a POST request to **/api/index/splash_page** which then calls **IndexController->SplashPageAction();** and fetches the JSON returned to poulate content on the splash page.
 
-        * **public/components/ReadMe.js** : This component loads the readme page. When the component is mounted, it makes a POST request to **/api/index/read_me** which then calls **IndexController->ReadMeAction();** and fetches the JSON returned to poulate content on the readme page. It also converts the readme content from markdown to HTML.
+        * **public/components/ReadMe.js** : This component loads the readme page. When the component is mounted, it makes a POST request to **/api/index/read_me** which then calls **IndexController->ReadMeAction();** and fetches the JSON returned to poulate content on the readme page. It also converts the readme content from markdown to HTML and then code highlights the code blocks.
 
 ## Routes
 In order for the routing to work, your **public/.htaccess** file must have the following:
