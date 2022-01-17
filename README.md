@@ -92,17 +92,17 @@ You can edit what CSS, JavaScript and React components are included by modifying
 
     * your-domain.com/examples/list_names will call ExamplesController->ListNamesAction();
 
-    * your-domain.com/examples/main = ExamplesController->mainAction();
+    * your-domain.com/examples/main will call ExamplesController->mainAction();
 
-    * your-domain.com/examples = ExamplesController->indexAction();
+    * your-domain.com/examples will call ExamplesController->indexAction();
 
     If it still can't find a matching controller->action, then it will check to see if the request method is POST and the URL starts with /api/. If so, the it will attempt to match the URL to a controller->action like above. For example:
 
-    * your-domain.com/api/examples/list_names = ExamplesController->ListNamesAction()
+    * your-domain.com/api/examples/list_names will call ExamplesController->ListNamesAction()
 
-    * your-domain.com/api/examples/main = ExamplesController->mainAction()
+    * your-domain.com/api/examples/main will call ExamplesController->mainAction()
 
-    * your-domain.com/api/examples = ExamplesController->indexAction()
+    * your-domain.com/api/examples will call ExamplesController->indexAction()
 
  6. In **Routes.php** the the route "/" is matched so it calls **(new AbstractController)->view("index");** This loads **views/index.php**, which is the view for the one page React app. **$this** (the instance for the controller) is also available to the view.
 
