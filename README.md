@@ -260,7 +260,7 @@ By default, the database connection is turned off. However, to turn it on, just 
 }
 ```
 
-The database connection is established using PDO, which allows for many database options:
+The database connection is established using PDO, which allows for many database types:
  * MySQL
  * PostgreSQL
  * Oracle
