@@ -158,7 +158,7 @@ Route::add('/super_basic',function() {
 });
 
 /*
- * Same as above, but only for POST request method
+ * Same as above, but for the POST request method
  * 
  * Triggered by your-domain.com/super_basic
  */
