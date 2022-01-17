@@ -104,7 +104,7 @@ You can edit what CSS, JavaScript and React components are included by modifying
 
     * your-domain.com/api/examples will call ExamplesController->indexAction()
 
- 6. In **Routes.php** the the route "/" is matched so it calls **(new AbstractController)->view("index");** This loads **views/index.php**, which is the view for the one page React app. **$this** (the instance for the controller) is also available to the view.
+ 6. In **Routes.php** the route "/" is matched so it calls **(new AbstractController)->view("index");** This loads **views/index.php**, which is the view for the one page React app. **$this** (the instance for the controller) is also available to the view.
 
  7. **views/index.php** loads the CSS, JavaScript and React components.
     
