@@ -282,7 +282,7 @@ When a model that extends **AbstractModel** is created it takes the class name, 
  * class **AppUserMetaDataModel** extends AbstractModel : **$this->table** will be **app_user_meta_data**
  * You can always set **$this->table** to any table you want as well.
 
-When you use the **select()**, **insert()**, **update()** and **delete()** functions in the model, they will be executed against the table stored in **$this->table**. Below is models/**AppUsersModel.php**. It has examples of how to use these functions to execute queries against your database.
+When you use the **select()**, **insert()**, **update()** and **delete()** functions in the model, they will be executed against the table stored in **$this->table**. Below is **models/AppUsersModel.php**. It has examples of how to use these functions to execute queries against your database.
 ```php
 <?php
 /**
