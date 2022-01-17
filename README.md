@@ -134,7 +134,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA]
 ```
 #### Custom Routes
-You can add custom routes to the **Routes.php** file. You'll see the route for the home page (which is "/"). Since this a single page React app, there is no need to create a controller since all we're doing is loading the index view, so we just call the view using an instance of **AbstractController**.
+You can add custom routes to the **Routes.php** file. You'll see the route for the home page (which is "/"). Since this a single page React app, there is no need to create a custom controller since all we're doing is loading the index view, so we just call the view using an instance of **AbstractController**.
 ``` php
 /**
  * Home page
