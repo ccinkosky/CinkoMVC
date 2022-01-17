@@ -158,6 +158,15 @@ Route::add('/super_basic',function() {
 });
 
 /*
+ * Same as above, but only for POST request method
+ * 
+ * Triggered by your-domain.com/super_basic
+ */
+Route::add('/super_basic',function() {
+    echo "<b>Difficulty Level:</b> Basic";
+},"post");
+
+/*
  * This one doesn't call a controller, it just takes the URL parameters,
  * creates and deletes a user using the AppUsersModel, and echos some text.
  * This example will only work with a database and database credentials in the 
