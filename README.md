@@ -197,7 +197,7 @@ The React app utilizes React Router to handle the app's internal routing. The ro
 ```
 
 For this app we've added the function **navigate(loc)** which allows us to use jQuery's **fadeOut** and **fadeIn** effects when the route changes. We pass the **navigate(loc)** function to the component's **navigate** property to pass the function down to the child components. The function then becomes available to the child elements as **this.props.navigate()**. Both the **SplashPage** and **ReadMe** components set **this.navigate = this.props.navigate;** so that they can use the function simply as **this.navigate()**. They can then use it in a **Link** component like this:
-```javascript
+```xml
 <Link onClick={()=>this.navigate("/")}>Home</Link>
 <Link onClick={()=>this.navigate("/README.md")}>README.md</Link>
 ```
