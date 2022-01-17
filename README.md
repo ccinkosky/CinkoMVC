@@ -1,5 +1,5 @@
 # CinkoMVC
-## Author: Corey Cinkosky &bull; Version 1.0 &bull; 249KB &bull; [Demo](https://mvc.redzoneassault.com/)
+## Author: Corey Cinkosky &bull; Version 1.0 &bull; [Demo](https://mvc.redzoneassault.com/)
 A light weight PHP MVC framework with React via CDN setup on the front end. Created with simplicity in mind, it's an easy tool to get associated with MVC frameworks and/or React while still being able to work with a good old LAMP stack. The front end is currently setup as a single page React app while the back end acts as an API that serves up JSON for the front end to consume.
 
 ## Setup
