@@ -498,6 +498,7 @@ $this->deleteCookie("user_info");
  * Update the splash page component to include links to clone or download
  * Add logo
  * Add loading screen
+ * Add better error handling
 
 ## Additional Resources
  * [React Guide](https://reactjs.org/docs/hello-world.html)
