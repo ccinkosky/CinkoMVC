@@ -187,7 +187,7 @@ Route::add('/create_user',function() {
 
 #### React Routes
 The React app utilizes React Router to handle the app's internal routing. The router is in **public/components/CinkoMvcApp.js**. You can see how the routes are determined in the JSX returned by the component. In the **Route** component is the **path** property that the route is trying to match. If there is a match, then the component within the **Route** element is used.
-```javascript
+```xml
 <Route exact path="/">
     <SplashPage navigate={navigate} />
 </Route>
