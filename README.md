@@ -387,9 +387,9 @@ class AppUsersModel extends AbstractModel {
      * @return void
      */
     public function deleteUser (int $id) {
-        $this->delete([
+        $this->delete(
             $where = [["id","=",$id]]
-        ]);
+        );
     }
 
     /**
