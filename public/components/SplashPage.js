@@ -17,6 +17,9 @@ function SplashPage (props) {
                         as an API that serves up JSON for the front end to consume.
                     </div>
                     <p>
+                        <a className="get-started pure-button pure-button-primary" href="https://github.com/ccinkosky/CinkoMVC" style={{marginRight:"10px"}}>
+                            Visit Repo <i class="fab fa-github"></i>
+                        </a>
                         <Link className="get-started pure-button pure-button-primary" onClick={()=>navigate("/README.md")}>
                             Get Started <i className="fas fa-sign-out-alt" aria-hidden="true"></i>
                         </Link>

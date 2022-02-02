@@ -1,23 +1,23 @@
 # CinkoMVC
-## Author: Corey Cinkosky &bull; Version 1.0 &bull; [Demo](https://mvc.redzoneassault.com/)
+## Author: Corey Cinkosky &bull; Version 1.0 &bull; [Demo](https://mvc.redzoneassault.com/) &bull; [CinkoMVC-docker](https://github.com/ccinkosky/CinkoMVC-docker)
 A light weight PHP MVC framework with React via CDN setup on the front end. Created with simplicity in mind, it's an easy tool to get associated with MVC frameworks and/or React while still being able to work with a good old LAMP stack. The front end is currently setup as a single page React app while the back end acts as an API that serves up JSON for the front end to consume.
 
 ## Setup
-The app should work right out of the box. Just load it up on your server and point your domain to the **public** folder. Make sure that **public/index.php** has access to the parent directory. If you run into trouble with access to the parent directory in a LAMP environment, you can modify your apache configuration file and set it so that the base directory is the parent directory while the document root is pointed to the **public** folder. In the example below a **public_html** folder (the parent folder) is the base directory the applciation sits in, while the **public** folder is the document root.
+The app should work right out of the box. Just load it up on your server and point your domain to the **public** folder. Make sure that **public/index.php** has access to the parent directory. If you run into trouble with access to the parent directory in a LAMP environment, you can modify your apache 2 configuration file and set it so that the base directory is the parent directory while the document root is pointed to the **public** folder. In the example below a **public_html** folder (the parent folder) is the base directory the applciation sits in, while the **public** folder is the document root.
 
  ``` xml
 <VirtualHost *:80>    
-    ServerName your-domain.com
-    
-    # You'll want to set the DocumentRoot to point to your public folder
-    DocumentRoot /var/www/public_html/public
+   ServerName your-domain.com
+   
+   # You'll want to set the DocumentRoot to point to your public folder
+   DocumentRoot /var/www/public_html/public
 
-    # The base directory for the app is the public_html folder
-    <Directory /var/www/public_html>
-       AllowOverride All
-    </Directory>
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+   # The base directory for the app is the public_html folder
+   <Directory /var/www/public_html>
+      AllowOverride All
+   </Directory>
+   ErrorLog ${APACHE_LOG_DIR}/error.log
+   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 There are also two full apache2.conf examples in the repo, one for http and the other for https. Once you've got the repo loaded and your domain pointing to the public folder, pull up the app in your browser and you should see this: **[Demo](https://mvc.redzoneassault.com/)**
@@ -376,9 +376,9 @@ class AppUsersModel extends AbstractModel {
      * @return void
      */
     public function deleteUser (int $id) {
-        $this->delete(
+        $this->delete([
             $where = [["id","=",$id]]
-        );
+        ]);
     }
 
     /**
@@ -491,6 +491,18 @@ $user_info = $this->getCookie("user_info");
 // Delete a cookie
 $this->deleteCookie("user_info");
 ```
+
+## Command Line Interface
+The framework comes with a simple command line tool using php-cgi to trigger a controller->action. If you're controller->action displays a view, it will return the html/json/etc. For example, from the application's base directory:
+```
+$ php-cgi cfcli.php controller=Index action=testCommandLine
+```
+...will execute IndexController->testCommandLineAction(). Here's another example:
+```
+$ php-cgi cfcli.php controller=Index action=testCommandLine a=one b=two
+```
+...will set $_GET["a"] = "one" and $_GET["b"] = "two" in IndexController->testCommandLineAction()
+
 ## To Do
  * Add a few more comments to the React Components
  * Update the splash page component to include a button that links to the github repo
@@ -498,7 +510,7 @@ $this->deleteCookie("user_info");
  * Add logo
  * Add loading screen
  * Add better error handling
- * Figure out linking to hash links to a page's internal content
+ * Figure out linking hash links to a page's internal content
 
 ## Additional Resources
  * [React Guide](https://reactjs.org/docs/hello-world.html)
