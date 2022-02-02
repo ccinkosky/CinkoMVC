@@ -3,32 +3,21 @@
 A light weight PHP MVC framework with React via CDN setup on the front end. Created with simplicity in mind, it's an easy tool to get associated with MVC frameworks and/or React while still being able to work with a good old LAMP stack. The front end is currently setup as a single page React app while the back end acts as an API that serves up JSON for the front end to consume.
 
 ## Setup
-The app should work right out of the box. Just load it up on your server and point your domain to the **public** folder. Make sure that **public/index.php** has access to the parent directory. If you run into trouble with access to the parent directory in a LAMP environment, you can modify your apache 2 configuration file and set it so that the base directory is the parent directory while the document root is pointed to the **public** folder. In the example below a **public_html** folder (the parent folder) is the base directory the applciation sits in, while the **public** folder is the document root.
+The app should work right out of the box. Just load it up on your server and point your domain to the **public** folder. Make sure that **public/index.php** has access to the parent directory. If you run into trouble with access to the parent directory in a LAMP environment, you can modify your apache configuration file and set it so that the base directory is the parent directory while the document root is pointed to the **public** folder. In the example below a **public_html** folder (the parent folder) is the base directory the applciation sits in, while the **public** folder is the document root.
 
  ``` xml
-<VirtualHost 1.2.3.4:8080>
-    
+<VirtualHost *:80>    
     ServerName your-domain.com
     
     # You'll want to set the DocumentRoot to point to your public folder
-    DocumentRoot /home/some_user/web/your-domain.com/public_html/public/
+    DocumentRoot /var/www/public_html/public
 
-    ...
-
-    # Inside the Directory tag associated with the public folder you want
-    # to make sure the php_admin_value open_basedir has the parent directory
-    # of your public folder, in this case public_html
-    <Directory /home/some_user/web/your-domain.com/public_html/public>
-        AllowOverride All
-        Options +Includes -Indexes +ExecCGI
-        php_admin_value open_basedir /home/some_user/web/your-domain.com/public_html:/home/some_user/tmp
-        
-        ...
-
+    # The base directory for the app is the public_html folder
+    <Directory /var/www/public_html>
+       AllowOverride All
     </Directory>
-
-    ...
-
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 There are also two full apache2.conf examples in the repo, one for http and the other for https. Once you've got the repo loaded and your domain pointing to the public folder, pull up the app in your browser and you should see this: **[Demo](https://mvc.redzoneassault.com/)**
