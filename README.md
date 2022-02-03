@@ -501,7 +501,13 @@ $ php-cgi cfcli.php controller=Index action=testCommandLine
 ```
 $ php-cgi cfcli.php controller=Index action=testCommandLine a=one b=two
 ```
-...will set $_GET["a"] = "one" and $_GET["b"] = "two" in IndexController->testCommandLineAction()
+...will set $_GET["a"] = "one" and $_GET["b"] = "two" in IndexController->testCommandLineAction().
+
+To install php-cgi run the following:
+```
+$ sudo apt-get update
+$ sudo apt-get install php-cgi
+```
 
 ## To Do
  * Add a few more comments to the React Components
