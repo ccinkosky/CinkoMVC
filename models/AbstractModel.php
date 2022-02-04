@@ -34,7 +34,7 @@ class AbstractModel extends AppObject {
     }
 
     /**
-     * THis function checks if the table exists
+     * This function checks if the table exists
      * 
      * @return bool
      */
