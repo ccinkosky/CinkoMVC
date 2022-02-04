@@ -72,11 +72,13 @@ You can edit what CSS, JavaScript and React components are included by modifying
 
     * **models/AbstractModel.php** : Your models should extend this class. It adds helpers to your models. Functions that make SELECT, INSERT, UPDATE and DELETE easier for the corresponding table.
 
-    * **models/AppUsersModel.php** : This is an example model showing how to use the helper functions that are added by **AbstractModel.php**. It also has an example of how to use PDO to execute more complicated queries.
+    * **models/AppUsersModel.php** : This is an example model showing how to use the helper functions that are added by **AbstractModel.php**. It also has an example of how to use PDO to execute more complicated queries. It also includes an example migrate function.
 
     * **controllers/AbstractController.php** : Your controllers should extend this class. It adds helpers to your controllers. Functions for verifying common request mothods (GET, POST, PUT, DELTE), functions for fetching the body of different requests, as well as functions to handle views.
 
     * **controllers/IndexController.php** : This controller is used to provide content to the front end app via JSON views.
+
+    * **controllers/MigrationsController.php** : This controller is used to run migrations for all the models.
 
  5. **Loader.php** includes the **Routes.php** file. This file takes the URL and determines the route the code flow will take. By default it assumes the request method is GET, but you can specify that the route only works for other request methods, such as POST, PUT and DELETE. If there is a custom route added, it will attempt to follow the code outlined for that route. If the URL doesn't match a custom route, then it will try to match the snake_case URL, convert it to camelCase and try to find the controller->action. If there is no action in the URL, then it will attempt to call the IndexAction() function for that controller. For example:
 
@@ -266,6 +268,33 @@ The database connection is established using PDO, which allows for many database
 
  The database connection is established in **AppObject.php**. When an instance of **AppObject** is created, it uses it's **dbConnect()** function to establish the database connection and then returns the PDO object to be stored in **$this->db**. Anything that extends **AppObject**, **AbsstractCOntroller** or **AbstractModel** has access to **$this->db**.
 
+## Migrations
+In order to run the migrations, the **allowMigrations** value in **config.json** needs to be set to **true**.
+
+There are two ways to run the migrations:
+
+ 1. **Via the command line interface**: Navigate to the base directory for this app and execute the following:
+```
+$ php cfcli.php -c Migrations -a run
+```
+ 2. **Via the browser**: Navigate to <YOUR_APP>**/migrations/run** in your browser
+
+When a migration is executed it will output the results of the migration. For example, without any additional models added, the initial migration output would be:
+```
+CinkoMVC Migrations
+
+Finding Models...
+
+ - AbstractModel
+   - AbstractModel->migrate() not found
+
+ - AppUsersModel
+   - Migrating... Done
+```
+
+...lastly, when an instance of a model is created and the model's corresponding table hasn't been created yet in the database - if your model has a **migrate** method then the **migrate** method will be executed regardless of whether or not **allowMigrations** is set to **true** in the **config.json** file.
+
+
 ## Models
 When a model that extends **AbstractModel** is created it takes the class name, removes "Model" and switches it to snake_case to get the table name, it then stores it in **$this->table**. For example:
  * class **AppUsersModel** extends AbstractModel : **$this->table** will be **app_users**
@@ -289,6 +318,24 @@ When you use the **select()**, **insert()**, **update()** and **delete()** funct
  * $this->table = "some_other_table";
  */
 class AppUsersModel extends AbstractModel {
+    
+    /**
+     * This function performs the migrations for this model.
+     * The first time an instance of this model is created,
+     * if the table does not already exist, this method will
+     * be executed.
+     */
+    public function migrate () {
+        $this->db->exec("
+            CREATE TABLE IF NOT EXISTS app_users ( 
+                id                INT AUTO_INCREMENT,
+                email             VARCHAR(300) NOT NULL, 
+                password          VARCHAR(50) NOT NULL, 
+                registration_date INT NOT NULL,
+                PRIMARY KEY(id)
+            );
+        ");
+    }
     
     /**
      * This is an example function to insert a new
@@ -377,7 +424,7 @@ class AppUsersModel extends AbstractModel {
      */
     public function deleteUser (int $id) {
         $this->delete([
-            $where = [["id","=",$id]]
+            $where = ["id","=",$id]
         ]);
     }
 
@@ -405,7 +452,6 @@ class AppUsersModel extends AbstractModel {
 
 }
 ```
-
 
 ## Views
 Controllers that extend **AbstractController** have two extra functions that make it a little easier to display views. The first is **jsonView()**. This takes a PHP array and echos the JSON representation of the array. For example:
@@ -493,21 +539,12 @@ $this->deleteCookie("user_info");
 ```
 
 ## Command Line Interface
-The framework comes with a simple command line tool using php-cgi to trigger a controller->action. If you're controller->action displays a view, it will return the html/json/etc. For example, from the application's base directory:
+The framework comes with a simple command line tool to trigger a controller->action. If you're controller->action displays a view, it will return the html/json/etc. For example, from the application's base directory:
 ```
-$ php-cgi cfcli.php controller=Index action=testCommandLine
+$ php cfcli.php -c Index -a testCommandLine
 ```
 ...will execute IndexController->testCommandLineAction(). Here's another example:
-```
-$ php-cgi cfcli.php controller=Index action=testCommandLine a=one b=two
-```
-...will set $_GET["a"] = "one" and $_GET["b"] = "two" in IndexController->testCommandLineAction().
 
-To install php-cgi run the following:
-```
-$ sudo apt-get update
-$ sudo apt-get install php-cgi
-```
 
 ## To Do
  * Add a few more comments to the React Components

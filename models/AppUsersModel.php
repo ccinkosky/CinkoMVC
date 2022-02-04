@@ -14,6 +14,24 @@
  */
 class AppUsersModel extends AbstractModel {
     
+     /**
+     * This function performs the migrations for this model.
+     * The first time an instance of this model is created,
+     * if the table does not already exist, this method will
+     * be executed.
+     */
+    public function migrate () {
+        $this->db->exec("
+            CREATE TABLE IF NOT EXISTS app_users ( 
+                id                INT AUTO_INCREMENT,
+                email             VARCHAR(300) NOT NULL, 
+                password          VARCHAR(50) NOT NULL, 
+                registration_date INT NOT NULL,
+                PRIMARY KEY(id)
+            );
+        ");
+    }
+    
     /**
      * This is an example function to insert a new
      * record into the app_users table. Something like this
@@ -100,9 +118,9 @@ class AppUsersModel extends AbstractModel {
      * @return void
      */
     public function deleteUser (int $id) {
-        $this->delete(
-            $where = [["id","=",$id]]
-        );
+        $this->delete([
+            $where = ["id","=",$id]
+        ]);
     }
 
     /**

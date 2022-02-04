@@ -1,5 +1,6 @@
 {
     "domain" : "http://your-domain.com",
+    "allowMigrations" : false,
     "databaseOn" : false,
     "database" : {
         "type" : "some_db_type",

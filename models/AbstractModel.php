@@ -27,7 +27,24 @@ class AbstractModel extends AppObject {
     function __construct () {
         parent::__construct();
         $this->table = str_replace("_model", "", $this->camelToSnake(get_class($this)));
+        if (!$this->tableExists() && method_exists($this, "migrate") && $this->config->databaseOn) {
+            $this->migrate();
+        }
         return $this;
+    }
+
+    /**
+     * THis function checks if the table exists
+     * 
+     * @return bool
+     */
+    public function tableExists () : bool {
+        try {
+            $result = $this->db->query("SELECT 1 FROM {$this->table} LIMIT 1");
+        } catch (Exception $e) {
+            return FALSE;
+        }
+        return $result !== FALSE;
     }
 
     /**

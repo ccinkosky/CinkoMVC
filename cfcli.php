@@ -1,4 +1,3 @@
-#! /usr/bin/php-cgi
 <?php
 /**
  * This a simple command line tool to trigger a
@@ -9,19 +8,9 @@
  * 
  * For example:
  * 
- * $ php-cgi cfcli.php controller=Index action=testCommandLine
+ * $ php cfcli.php -c Index -a testCommandLine
  * 
  * ...will execute IndexController->testCommandLineAction()
- * 
- * You can also add additional parameters to the command and
- * those we'll become available to your action vie $_GET.
- * 
- * For example:
- * 
- * $ php-cgi cfcli.php controller=Index action=testCommandLine a=one b=two
- * 
- * ...will set $_GET["a"] = "one" and $_GET["b"] = "two" in
- * IndexController->testCommandLineAction() * 
  */
 
 // Load the abstract class
@@ -33,8 +22,14 @@ foreach (glob(__DIR__."/models/*.php") as $filename) { require $filename; }
 // Load all controllers
 foreach (glob(__DIR__."/controllers/*.php") as $filename) { require $filename; }
 
+// Find the controller and action command line options
+$shortopts  = "";
+$shortopts .= "c:";
+$shortopts .= "a:";
+$options = getopt($shortopts,[]);
+
 // Create instance of the controller and call the action
-$controller = $_GET["controller"]."Controller";
-$action = $_GET["action"]."Action";
+$controller = $options["c"]."Controller";
+$action = $options["a"]."Action";
 $controller = new $controller;
 $controller->$action();
