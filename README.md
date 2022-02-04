@@ -266,7 +266,7 @@ The database connection is established using PDO, which allows for many database
  * Cubrid
  * 4D
 
- The database connection is established in **AppObject.php**. When an instance of **AppObject** is created, it uses it's **dbConnect()** function to establish the database connection and then returns the PDO object to be stored in **$this->db**. Anything that extends **AppObject**, **AbsstractCOntroller** or **AbstractModel** has access to **$this->db**.
+ The database connection is established in **AppObject.php**. When an instance of **AppObject** is created, it uses it's **dbConnect()** function to establish the database connection and then returns the PDO object to be stored in **$this->db**. Anything that extends **AppObject**, **AbsstractController** or **AbstractModel** has access to **$this->db**.
 
 ## Migrations
 In order to run the migrations, the **allowMigrations** value in **config.json** needs to be set to **true**.
@@ -321,9 +321,8 @@ class AppUsersModel extends AbstractModel {
     
     /**
      * This function performs the migrations for this model.
-     * The first time an instance of this model is created,
-     * if the table does not already exist, this method will
-     * be executed.
+     * When an instance of this model is created, if the table
+     * does not already exist, this method will be executed.
      */
     public function migrate () {
         $this->db->exec("
@@ -543,7 +542,7 @@ The framework comes with a simple command line tool to trigger a controller->act
 ```
 $ php cfcli.php -c Index -a testCommandLine
 ```
-...will execute IndexController->testCommandLineAction(). Here's another example:
+...will execute IndexController->testCommandLineAction().
 
 
 ## To Do
