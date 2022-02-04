@@ -22,6 +22,8 @@ The app should work right out of the box. Just load it up on your server and poi
 ```
 There are also two full apache2.conf examples in the repo, one for http and the other for https. Once you've got the repo loaded and your domain pointing to the public folder, pull up the app in your browser and you should see this: **[Demo](https://mvc.redzoneassault.com/)**
 
+Alternatively, you can use **CinkoMVC-docker** - which comes ready to roll, conneted to it's own MySQL database with phpMyAdmin installed.
+
 ## Front End App
 The front end is currently setup as a single page React app. It utilizes the following:
  * React
