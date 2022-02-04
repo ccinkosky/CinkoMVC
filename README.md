@@ -268,7 +268,7 @@ The database connection is established using PDO, which allows for many database
  * Cubrid
  * 4D
 
- The database connection is established in **AppObject.php**. When an instance of **AppObject** is created, it uses it's **dbConnect()** function to establish the database connection and then returns the PDO object to be stored in **$this->db**. Anything that extends **AppObject**, **AbsstractController** or **AbstractModel** has access to **$this->db**.
+ The database connection is established in **AppObject.php**. When an instance of **AppObject** is created, it uses it's **dbConnect()** function to establish the database connection and then returns the PDO object to be stored in **$this->db**. Anything that extends **AppObject**, **AbstractController** or **AbstractModel** has access to **$this->db**.
 
 ## Migrations
 In order to run the migrations, the **allowMigrations** value in **config.json** needs to be set to **true**.
@@ -549,12 +549,10 @@ $ php cfcli.php -c Index -a testCommandLine
 
 ## To Do
  * Add a few more comments to the React Components
- * Update the splash page component to include a button that links to the github repo
- * Update the splash page component to include links to clone or download
  * Add logo
  * Add loading screen
  * Add better error handling
- * Figure out linking hash links to a page's internal content
+ * Figure out linking hash links to a page's internal content while still utilizing the hash router from React Router.
 
 ## Additional Resources
  * [React Guide](https://reactjs.org/docs/hello-world.html)
