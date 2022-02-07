@@ -90,7 +90,7 @@ class AbstractModel extends AppObject {
         $sql = "SELECT ".$fieldsPart.$fromPart.$wherePart.$orderpart.$limitpart;
         $stmt = $this->db->prepare($sql);
         $stmt->execute($prepareVars); 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
